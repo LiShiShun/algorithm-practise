@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.31)
 
 project(algorithm_practice)
 
 # 设置C++标准
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 自定义目标来创建 bin 目录
@@ -27,13 +27,13 @@ function(add_executable_with_dependencies target_name)
 endfunction()
 
 # 自动扫描所有子目录
-file(GLOB subdirs RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *)
+file(GLOB subdirs RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/src "${CMAKE_CURRENT_SOURCE_DIR}/src/*")
 
 foreach(subdir ${subdirs})
-    if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${subdir})
-        if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${subdir}/CMakeLists.txt)
-            add_subdirectory(${subdir})
-            message(STATUS "Added subdirectory: ${subdir}")
+    if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/src/${subdir})
+        if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/src/${subdir}/CMakeLists.txt)
+            add_subdirectory(src/${subdir})
+            message(STATUS "Added subdirectory: src/${subdir}")
         endif()
     endif()
 endforeach()
