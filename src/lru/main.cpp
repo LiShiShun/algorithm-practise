@@ -32,6 +32,19 @@ public:
         capacity_ = capacity < 0? 0 : capacity;
     }
 
+    ~LRUCache() {
+        // 删除链表的所有节点
+        Node* node = head_->next;
+        while(node != tail_) {
+            Node* next = node->next;
+            delete node;
+            node = next;
+        }
+
+        delete head_;
+        delete tail_;
+    }
+
     int Get(int key) {
         Node* node = GetNode(key);
         if(node == nullptr) {
@@ -58,6 +71,7 @@ public:
                 if(last_it != node_map_.end()) {
                     node_map_.erase(last_it);
                 }
+                delete last;
             }
 
         } else {
