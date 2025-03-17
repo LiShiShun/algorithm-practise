@@ -1,10 +1,15 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.10)
 
 project(algorithm_practice)
 
 # 设置C++标准
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# msvc设置源文件编码为utf8
+if(MSVC)
+    add_compile_options(/utf-8)
+endif()
 
 # 自定义目标来创建 bin 目录
 add_custom_target(create_bin_dir ALL
